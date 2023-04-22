@@ -1,9 +1,7 @@
-
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatelessWidget {
-
-const LoginScreen({
+  const LoginScreen({
     super.key,
   });
 
@@ -16,7 +14,6 @@ const LoginScreen({
       body: const LoginScreenInfo(),
     );
   }
-
 }
 
 class LoginScreenInfo extends StatelessWidget {
@@ -26,7 +23,6 @@ class LoginScreenInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     final theme = Theme.of(context);
 
     final welcomeTextStyle = theme.textTheme.displayMedium!;
@@ -39,26 +35,24 @@ class LoginScreenInfo extends StatelessWidget {
           const SizedBox(height: 40),
           Column(
             children: [
-            const TextField(
-              decoration: InputDecoration(
-                labelText: 'Email'
-              )
-            ),
-            const SizedBox(height: 15),
-            const TextField(
-              obscureText: true,
-              decoration: InputDecoration(
-                labelText: 'Password'
+              const TextField(decoration: InputDecoration(labelText: 'Email')),
+              const SizedBox(height: 15),
+              const TextField(
+                obscureText: true,
+                decoration: InputDecoration(labelText: 'Password'),
               ),
-            ),
-            const SizedBox(height: 20),
-            FilledButton(
-              onPressed: (){
-                print('loggin pressed');
-              },
-              child: const Text('Login',)
-            )
-          ],)
+              const SizedBox(height: 50),
+              Container(
+                  width: double.infinity,
+                  child: FilledButton(
+                      onPressed: () {
+                        print('loggin pressed');
+                      },
+                      child: const Text(
+                        'Login to shipper account',
+                      )))
+            ],
+          )
         ],
       ),
     );

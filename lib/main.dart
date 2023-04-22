@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
             useMaterial3: true,
             colorScheme: ColorScheme.fromSeed(
-                seedColor: Color.fromARGB(255, 255, 224, 70))),
+                seedColor: const Color.fromARGB(255, 255, 224, 70))),
         home: LoginScreen(),
       ),
     );
@@ -37,7 +37,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-
     return LayoutBuilder(builder: (context, constraints) {
       return Scaffold(
         appBar: AppBar(
@@ -95,22 +94,18 @@ class Order extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               TextButton.icon(
-                onPressed: () {}, 
-                icon: Icon(Icons.phone), 
-                label: Text('Call customer')
-              ),
+                  onPressed: () {},
+                  icon: Icon(Icons.phone),
+                  label: Text('Call customer')),
               TextButton.icon(
-                onPressed: () {
-                  Navigator.push(
-                    context, 
-                    MaterialPageRoute(
-                      builder: (context) => const MapToCustomerPage()
-                    )
-                  );
-                }, 
-                icon: Icon(Icons.map), 
-                label: Text('Ship this order')
-              ),
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const MapToCustomerPage()));
+                  },
+                  icon: Icon(Icons.map),
+                  label: Text('Ship this order')),
             ],
           )
         ],
@@ -121,7 +116,7 @@ class Order extends StatelessWidget {
 
 class MapToCustomerPage extends StatelessWidget {
   const MapToCustomerPage({super.key});
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -137,16 +132,10 @@ class MapToCustomerBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      children: [
-        Order(),
-        Text('def')
-      ],
+      children: [Order(), Text('def')],
     );
   }
-
 }
-
-
 
 class MyAppState extends ChangeNotifier {
   var current = WordPair.random();
@@ -168,4 +157,3 @@ class MyAppState extends ChangeNotifier {
     notifyListeners();
   }
 }
-
