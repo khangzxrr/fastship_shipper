@@ -16,11 +16,13 @@ class LoginProvider extends ChangeNotifier {
     this.password = password;
   }
 
-  void login() async {
+  void login(VoidCallback loginSuccess) async {
     var loginModel = await loginByEmailAndPassword(email, password);
 
     this.loginModel = loginModel!;
 
     notifyListeners();
+
+    loginSuccess.call();
   }
 }

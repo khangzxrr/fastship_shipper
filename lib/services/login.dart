@@ -13,14 +13,22 @@ Future<LoginModel?> loginByEmailAndPassword(
   print('login by email $email password $password');
 
   try {
-    final response =
-        await http.post(Uri.parse('${Constants.apiEndpoint}/order'));
+    final loginUrl = Uri.parse('${Constants.apiEndpoint}/Login');
+
+    print(loginUrl);
+
+    Map requestBody = {'email': email, 'password': password};
+
+    final response = await http.post(loginUrl,
+        headers: {'Content-Type': 'application/json'},
+        body: json.encode(requestBody));
 
     if (response.statusCode == 200) {
       final jsonObject = json.decode(response.body);
       result = LoginModel.fromJson(jsonObject);
     } else {
       print('error');
+      print(response.body);
     }
   } catch (e) {
     log(e.toString());

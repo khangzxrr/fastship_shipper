@@ -1,4 +1,5 @@
 import 'package:fastship_shipper/providers/login.dart';
+import 'package:fastship_shipper/views/home.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -58,9 +59,15 @@ class LoginScreenInfo extends StatelessWidget {
                       width: double.infinity,
                       child: FilledButton(
                           onPressed: () {
-                            print('loggin pressed');
-
-                            loginProvider.login();
+                            loginProvider.login(() {
+                              if (loginProvider.loginModel.token.isNotEmpty) {
+                                print('login success');
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (_) => MyHomePage()));
+                              }
+                            });
                           },
                           child: const Text(
                             'Login to shipper account',
