@@ -1,5 +1,5 @@
-import 'package:fastship_shipper/main.dart';
 import 'package:fastship_shipper/utils/call_google_map.dart';
+import 'package:fastship_shipper/views/home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:geolocator/geolocator.dart';
