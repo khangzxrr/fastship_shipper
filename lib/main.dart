@@ -1,5 +1,6 @@
 import 'package:english_words/english_words.dart';
 import 'package:fastship_shipper/views/login.dart';
+import 'package:fastship_shipper/views/mapToCustomer.dart';
 import 'package:fastship_shipper/views/welcome.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
             useMaterial3: true,
             colorScheme: ColorScheme.fromSeed(
                 seedColor: const Color.fromARGB(255, 255, 224, 70))),
-        home: LoginScreen(),
+        home: MapToCustomerPage(),
       ),
     );
   }
@@ -110,29 +111,6 @@ class Order extends StatelessWidget {
           )
         ],
       ),
-    );
-  }
-}
-
-class MapToCustomerPage extends StatelessWidget {
-  const MapToCustomerPage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Map to customer'),
-      ),
-      body: MapToCustomerBody(),
-    );
-  }
-}
-
-class MapToCustomerBody extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [Order(), Text('def')],
     );
   }
 }
