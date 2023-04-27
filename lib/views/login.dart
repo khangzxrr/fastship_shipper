@@ -1,4 +1,6 @@
+import 'package:fastship_shipper/providers/login.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({
@@ -27,34 +29,48 @@ class LoginScreenInfo extends StatelessWidget {
 
     final welcomeTextStyle = theme.textTheme.displayMedium!;
 
-    return Padding(
-      padding: const EdgeInsets.all(15.0),
-      child: Column(
-        children: [
-          Text('Please login to your account', style: welcomeTextStyle),
-          const SizedBox(height: 40),
-          Column(
+    return Consumer<LoginProvider>(
+      builder: (context, loginProvider, child) {
+        return Padding(
+          padding: const EdgeInsets.all(15.0),
+          child: Column(
             children: [
-              const TextField(decoration: InputDecoration(labelText: 'Email')),
-              const SizedBox(height: 15),
-              const TextField(
-                obscureText: true,
-                decoration: InputDecoration(labelText: 'Password'),
-              ),
-              const SizedBox(height: 50),
-              Container(
-                  width: double.infinity,
-                  child: FilledButton(
-                      onPressed: () {
-                        print('loggin pressed');
-                      },
-                      child: const Text(
-                        'Login to shipper account',
-                      )))
+              Text('Please login to your account', style: welcomeTextStyle),
+              const SizedBox(height: 40),
+              Column(
+                children: [
+                  TextField(
+                      decoration: const InputDecoration(labelText: 'Email'),
+                      onChanged: (value) {
+                        loginProvider.setEmail(value);
+                      }),
+                  const SizedBox(height: 15),
+                  TextField(
+                    obscureText: true,
+                    decoration: const InputDecoration(labelText: 'Password'),
+                    onChanged: (value) {
+                      loginProvider.setPassword(value);
+                    },
+                  ),
+                  const SizedBox(height: 50),
+                  Text('email value: ${loginProvider.email}'),
+                  Container(
+                      width: double.infinity,
+                      child: FilledButton(
+                          onPressed: () {
+                            print('loggin pressed');
+
+                            loginProvider.login();
+                          },
+                          child: const Text(
+                            'Login to shipper account',
+                          ))),
+                ],
+              )
             ],
-          )
-        ],
-      ),
+          ),
+        );
+      },
     );
   }
 }
