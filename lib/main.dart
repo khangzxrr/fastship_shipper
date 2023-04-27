@@ -1,4 +1,5 @@
 import 'package:english_words/english_words.dart';
+import 'package:fastship_shipper/providers/login.dart';
 import 'package:fastship_shipper/views/login.dart';
 import 'package:fastship_shipper/views/mapToCustomer.dart';
 import 'package:fastship_shipper/views/welcome.dart';
@@ -14,15 +15,15 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => MyAppState(),
+    return MultiProvider(
+      providers: [ChangeNotifierProvider(create: (_) => LoginProvider())],
       child: MaterialApp(
         title: 'My first app',
         theme: ThemeData(
             useMaterial3: true,
             colorScheme: ColorScheme.fromSeed(
                 seedColor: const Color.fromARGB(255, 255, 224, 70))),
-        home: MapToCustomerPage(),
+        home: const WelcomeScreen(),
       ),
     );
   }
@@ -112,26 +113,5 @@ class Order extends StatelessWidget {
         ],
       ),
     );
-  }
-}
-
-class MyAppState extends ChangeNotifier {
-  var current = WordPair.random();
-
-  void generateNext() {
-    current = WordPair.random();
-    notifyListeners();
-  }
-
-  var favorites = <WordPair>[];
-
-  void toggleFavorite() {
-    if (favorites.contains(current)) {
-      favorites.remove(current);
-    } else {
-      favorites.add(current);
-    }
-
-    notifyListeners();
   }
 }
