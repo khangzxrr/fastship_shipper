@@ -2,6 +2,7 @@ import 'package:fastship_shipper/providers/login.dart';
 import 'package:fastship_shipper/views/home.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({
@@ -59,10 +60,17 @@ class LoginScreenInfo extends StatelessWidget {
                       width: double.infinity,
                       child: FilledButton(
                           onPressed: () {
-                            loginProvider.login(() {
+                            loginProvider.login(() async {
                               if (loginProvider.loginModel.token.isNotEmpty) {
                                 print('login success');
-                                Navigator.push(
+
+                                final SharedPreferences preferences =
+                                    await SharedPreferences.getInstance();
+
+                                preferences.setString(
+                                    'token', loginProvider.loginModel.token);
+
+                                Navigator.pushReplacement(
                                     context,
                                     MaterialPageRoute(
                                         builder: (_) => MyHomePage()));

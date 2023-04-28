@@ -19,10 +19,11 @@ class LoginProvider extends ChangeNotifier {
   void login(VoidCallback loginSuccess) async {
     var loginModel = await loginByEmailAndPassword(email, password);
 
-    this.loginModel = loginModel!;
+    if (loginModel != null) {
+      this.loginModel = loginModel;
+      notifyListeners();
 
-    notifyListeners();
-
-    loginSuccess.call();
+      loginSuccess.call();
+    }
   }
 }
