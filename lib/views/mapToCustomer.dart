@@ -32,7 +32,7 @@ class MapToCustomerBody extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Order(),
+        //Order(),
         Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
           ElevatedButton(
               onPressed: () {}, child: Text('Thanh toán số tiền còn lại')),
