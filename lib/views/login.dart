@@ -1,8 +1,8 @@
+import 'package:fastship_shipper/libs/authorizeClient.dart';
 import 'package:fastship_shipper/providers/login.dart';
 import 'package:fastship_shipper/views/home.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({
@@ -60,14 +60,11 @@ class LoginScreenInfo extends StatelessWidget {
                       width: double.infinity,
                       child: FilledButton(
                           onPressed: () {
-                            loginProvider.login(() async {
+                            loginProvider.login(() {
                               if (loginProvider.loginModel.token.isNotEmpty) {
                                 print('login success');
 
-                                final SharedPreferences preferences =
-                                    await SharedPreferences.getInstance();
-
-                                preferences.setString(
+                                AuthorizeClient.sharedPreferences.setString(
                                     'token', loginProvider.loginModel.token);
 
                                 Navigator.pushReplacement(
