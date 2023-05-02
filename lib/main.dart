@@ -1,15 +1,22 @@
+import 'package:fastship_shipper/get_it_DI/configDependencies.dart';
+import 'package:fastship_shipper/libs/authorizeClient.dart';
 import 'package:fastship_shipper/providers/login.dart';
+import 'package:fastship_shipper/providers/order.dart';
 import 'package:fastship_shipper/views/home.dart';
 import 'package:fastship_shipper/views/welcome.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+
+
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  final SharedPreferences preferences = await SharedPreferences.getInstance();
 
-  final String? token = preferences.getString('token');
+  final ConfigDependencies configDependencies = ConfigDependencies();
+
+  await configDependencies.config();
+
+  final String? token = AuthorizeClient.sharedPreferences.getString('token');
 
   runApp(MyApp(
     token: token,
@@ -24,7 +31,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
-      providers: [ChangeNotifierProvider(create: (_) => LoginProvider())],
+      providers: [
+        ChangeNotifierProvider(create: (_) => LoginProvider()),
+        ChangeNotifierProvider(create: (_) => OrderProvider())
+        ],
       child: MaterialApp(
         title: 'My first app',
         theme: ThemeData(
