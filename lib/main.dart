@@ -1,5 +1,6 @@
 import 'package:fastship_shipper/get_it_DI/configDependencies.dart';
 import 'package:fastship_shipper/libs/authorizeClient.dart';
+import 'package:fastship_shipper/providers/current_shipping_order.dart';
 import 'package:fastship_shipper/providers/login.dart';
 import 'package:fastship_shipper/providers/order.dart';
 import 'package:fastship_shipper/views/home.dart';
@@ -7,13 +8,10 @@ import 'package:fastship_shipper/views/welcome.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   final ConfigDependencies configDependencies = ConfigDependencies();
-
   await configDependencies.config();
 
   final String? token = AuthorizeClient.sharedPreferences.getString('token');
@@ -33,8 +31,9 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => LoginProvider()),
-        ChangeNotifierProvider(create: (_) => OrderProvider())
-        ],
+        ChangeNotifierProvider(create: (_) => OrderProvider()),
+        ChangeNotifierProvider(create: (_) => CurrentShippingOrder())
+      ],
       child: MaterialApp(
         title: 'My first app',
         theme: ThemeData(
