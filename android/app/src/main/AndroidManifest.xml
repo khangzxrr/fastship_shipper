@@ -31,10 +31,18 @@
             android:name="flutterEmbedding"
             android:value="2" />
 
-        <meta-data android:name="com.google.android.geo.API_KEY"
-               android:value="AIzaSyD6f3l7exbDwe2kzTmDO2o412q_etQtzt8"/>
+        <meta-data android:name="com.mapbox.token" android:value="sk.eyJ1IjoiaWJpbmgiLCJhIjoiY2t2YWZpdXdmMzd4cDMxbHBsNmU4NmNsMyJ9.WT8r42HijaCYAeUPq3xCxA" />
+
+
 
     </application>
+
+    <queries>
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <data android:scheme="geo" />
+        </intent>
+    </queries>
 
     <uses-permission android:name="android.permission.INTERNET"/>
         <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
