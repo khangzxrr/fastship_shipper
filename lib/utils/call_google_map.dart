@@ -3,9 +3,11 @@ import 'package:url_launcher/url_launcher.dart';
 class MapUtils {
   MapUtils._();
 
-  static Future<void> openMap(double latitude, double longitude) async {
+  static Future<void> openMap(String address) async {
+    address = Uri.encodeComponent(address);
+
     String googleUrl =
-        'https://www.google.com/maps/dir/?api=1&destination=FPT+University+HCMC,+Đường+D1,+Long+Thạnh+Mỹ,+Thành+Phố+Thủ+Đức,+Ho+Chi+Minh+City';
+        'https://www.google.com/maps/dir/?api=1&destination=$address';
     if (await canLaunchUrl(Uri.parse(googleUrl))) {
       await launchUrl(Uri.parse(googleUrl),
           mode: LaunchMode.externalNonBrowserApplication);
