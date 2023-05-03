@@ -1,6 +1,8 @@
 import 'package:fastship_shipper/models/order.dart';
+import 'package:fastship_shipper/providers/current_shipping_order.dart';
 import 'package:fastship_shipper/providers/order.dart';
 import 'package:fastship_shipper/views/mapToCustomer.dart';
+import 'package:fastship_shipper/views/order.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -14,6 +16,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    Provider.of<OrderProvider>(context, listen: false).getOrderShippings();
+
     return LayoutBuilder(builder: (context, constraints) {
       return Scaffold(
         appBar: AppBar(
@@ -34,62 +38,23 @@ class _MyHomePageState extends State<MyHomePage> {
 }
 
 class CurrentOrderPage extends StatelessWidget {
+  const CurrentOrderPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Consumer<OrderProvider>(builder: (context, orderProvider, child) {
-
-      orderProvider.getOrderShippings();
-
       return SingleChildScrollView(
-        padding: EdgeInsets.all(15),
+        padding: const EdgeInsets.all(15),
         child: Column(
           children: [
-            Text('Today you have ${orderProvider.orderShippings.length} orders'),
-            for (var orderShipping in orderProvider.orderShippings) Order(orderShippingModel: orderShipping)
+            Text(
+                'Today you have ${orderProvider.orderShippings.length} orders'),
+            for (var orderShipping in orderProvider.orderShippings)
+              Order(
+                  orderShippingModel: orderShipping, renderShippingButton: true)
           ],
         ),
       );
     });
-  }
-}
-
-class Order extends StatelessWidget {
-
-  OrderShippingModel orderShippingModel;
-
-  Order({required this.orderShippingModel});
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          ListTile(
-            leading: const Icon(Icons.shopping_basket),
-            title: const Text('Order 1'),
-            subtitle: Text('Người nhận: ${orderShippingModel.customerName}\nĐịa chỉ: ${orderShippingModel.customerAddress}\nSố điện thoại: ${orderShippingModel.customerPhoneNumber}\nTrạng thái: ${orderShippingModel.orderShipingStatus}\nSố tiền còn lại: ${orderShippingModel.remainCost}'),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              TextButton.icon(
-                  onPressed: () {},
-                  icon: Icon(Icons.phone),
-                  label: Text('Call customer')),
-              TextButton.icon(
-                  onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const MapToCustomerPage()));
-                  },
-                  icon: Icon(Icons.map),
-                  label: Text('Ship this order')),
-            ],
-          )
-        ],
-      ),
-    );
   }
 }
