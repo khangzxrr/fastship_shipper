@@ -97,13 +97,15 @@ class MapToCustomerBody extends StatelessWidget {
                       .then((isAcceptPayment) {
                     if (isAcceptPayment!) {
                       currentShippingOrderProvider.acceptPayment().then((_) {
+                        Provider.of<OrderProvider>(context, listen: false)
+                            .getOrderShippings();
+
                         showDialog(
                                 context: context,
                                 builder: (BuildContext context) =>
                                     PaymentDialog.getSuccessDialog(context))
                             .then((_) {
-                          Provider.of<OrderProvider>(context)
-                              .getOrderShippings();
+                          Navigator.pop(context);
                         });
                       });
                     }
