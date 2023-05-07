@@ -9,7 +9,7 @@ import 'package:get_it/get_it.dart';
 class OrderProvider extends ChangeNotifier {
   Iterable<OrderShippingModel> orderShippings = [];
 
-  void getOrderShippings() async {
+  getOrderShippings() async {
     final http = GetIt.instance<AuthorizeClient>();
     final orderEndpoint = http.generateApi('/shipper/orders');
 
