@@ -1,5 +1,6 @@
 import 'package:fastship_shipper/models/order.dart';
 import 'package:fastship_shipper/providers/current_shipping_order.dart';
+import 'package:fastship_shipper/utils/utils.dart';
 import 'package:fastship_shipper/views/mapToCustomer.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -28,7 +29,7 @@ class Order extends StatelessWidget {
             leading: const Icon(Icons.shopping_basket),
             title: const Text('Order 1'),
             subtitle: Text(
-                'Người nhận: ${orderShippingModel.customerName}\nĐịa chỉ: ${orderShippingModel.customerAddress}\nSố điện thoại: ${orderShippingModel.customerPhoneNumber}\nTrạng thái: ${orderShippingModel.parseOrderShippingStatus()}\nSố tiền còn lại: ${orderShippingModel.remainCost}'),
+                'Người nhận: ${orderShippingModel.customerName}\nĐịa chỉ: ${orderShippingModel.customerAddress}\nSố điện thoại: ${orderShippingModel.customerPhoneNumber}\nTrạng thái: ${orderShippingModel.parseOrderShippingStatus()}\nSố tiền còn lại: ${Utils.formatNumberToVND(orderShippingModel.remainCost)} VNĐ'),
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
