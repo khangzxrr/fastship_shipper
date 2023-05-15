@@ -21,7 +21,8 @@ class CurrentShippingOrder extends ChangeNotifier {
         http.generateApi('/shipper/orders/remainCost/confirm');
 
     Map data = {
-      'orderId': orderShippingModel.orderShippingId,
+      'orderId': orderShippingModel.orderId,
+      'orderShippingId': orderShippingModel.orderShippingId,
       'payMethod': 'byCash'
     };
 

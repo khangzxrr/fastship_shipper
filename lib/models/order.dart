@@ -1,5 +1,6 @@
 class OrderShippingModel {
   int orderShippingId;
+  int orderId;
 
   String customerName;
   String customerAddress;
@@ -11,6 +12,7 @@ class OrderShippingModel {
 
   OrderShippingModel(
       this.orderShippingId,
+      this.orderId,
       this.customerName,
       this.customerAddress,
       this.customerPhoneNumber,
@@ -36,6 +38,7 @@ class OrderShippingModel {
   factory OrderShippingModel.fromJson(Map<String, dynamic> parsedJson) {
     return OrderShippingModel(
         parsedJson['orderShippingId'],
+        parsedJson['orderId'],
         parsedJson['customerName'],
         parsedJson['customerAddress'],
         parsedJson['customerPhoneNumber'],
