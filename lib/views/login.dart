@@ -55,7 +55,6 @@ class LoginScreenInfo extends StatelessWidget {
                     },
                   ),
                   const SizedBox(height: 50),
-                  Text('email value: ${loginProvider.email}'),
                   Container(
                       width: double.infinity,
                       child: FilledButton(
