@@ -1,3 +1,4 @@
 class Constants {
-  static String apiEndpoint = 'http://10.0.2.2:57679';
+  static String apiEndpoint = 'https://fastship.sontran.us';
+  //static String apiEndpoint = 'http://10.0.2.2:57679';
 }
