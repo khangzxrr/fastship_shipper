@@ -3,6 +3,7 @@ import 'package:fastship_shipper/libs/authorizeClient.dart';
 import 'package:fastship_shipper/providers/current_shipping_order.dart';
 import 'package:fastship_shipper/providers/login.dart';
 import 'package:fastship_shipper/providers/order.dart';
+import 'package:fastship_shipper/providers/product_issue_provider.dart';
 import 'package:fastship_shipper/views/home.dart';
 import 'package:fastship_shipper/views/welcome.dart';
 import 'package:flutter/material.dart';
@@ -32,7 +33,8 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (_) => LoginProvider()),
         ChangeNotifierProvider(create: (_) => OrderProvider()),
-        ChangeNotifierProvider(create: (_) => CurrentShippingOrder())
+        ChangeNotifierProvider(create: (_) => CurrentShippingOrder()),
+        ChangeNotifierProvider(create: (_) => ProductIssueProvider())
       ],
       child: MaterialApp(
         title: 'My first app',
