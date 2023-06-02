@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:developer';
 
 import 'package:fastship_shipper/libs/authorizeClient.dart';
 import 'package:fastship_shipper/models/order.dart';
