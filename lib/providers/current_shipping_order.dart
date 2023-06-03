@@ -35,6 +35,7 @@ class CurrentShippingOrder extends ChangeNotifier {
 
       print(responseJson);
     } else {
+      print(response.statusCode);
       print('failed');
       throw Exception('Error when request confirm payment');
     }
